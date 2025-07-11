@@ -19,10 +19,16 @@
         <h1>Flashcards System</h1>
     </div>
     </main>
-    <h3>Con este proyecto podras crear flashcards para estudiar y repasar las respuestas, <br>clickea en el corazon para agregar una flashcard.</h3>
+    <h3>Con este proyecto podras crear flashcards para estudiar y repasar las respuestas, <br>clickea en el corazon para agregar una flashcard.<br>Posiciona el mouse sobre la tarjeta para revelar la respuesa.</h3>
     <form id="formulario">
-        <input id="preguntas"type="text" placeholder="Agrega la pregunta">
-        <input  id="respuestas" placeholder="Agrega la respuesta">
+        <div class="contenedor-input">
+        <span id="contador-preguntas">0 / 80</span>
+        <input id="preguntas"type="text" maxlength="80" placeholder="Agrega la pregunta">
+        </div>
+        <div class="contenedor-input">
+        <span id="contador-respuestas">0 / 80</span>
+        <input  id="respuestas" maxlength="80"  placeholder="Agrega la respuesta">
+        </div>
         <button  class="boton-imagen"><img src="img/Button.png" alt="agregar"></button>
     </form>
     <div class="contenedor-tarjetas">

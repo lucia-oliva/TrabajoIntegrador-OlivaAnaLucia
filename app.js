@@ -6,18 +6,41 @@ const formulario = document.getElementById('formulario');
 const input = document.getElementById('preguntas');
 const input2 = document.getElementById('respuestas');
 const lista = document.querySelector('.contenedor-tarjetas');
+const contadorPreguntas = document.getElementById('contador-preguntas');
+const contadorRespuestas = document.getElementById('contador-respuestas');
+const LIMITE_CARACTERES = 80;
+
+input.addEventListener('input', () => {
+    contadorPreguntas.textContent = `${input.value.length} / ${LIMITE_CARACTERES}`;
+});
+
+input2.addEventListener('input', () => {
+    contadorRespuestas.textContent = `${input2.value.length} / ${LIMITE_CARACTERES}`;
+});
+
 
 function mostrarTarjetas() {
     lista.innerHTML = ''; 
+
     preguntas.forEach((pregunta, index) => {
         const tarjeta = document.createElement('div');
         tarjeta.classList.add('tarjeta');
-        tarjeta.style.backgroundColor = colores[index % colores.length]; 
-        tarjeta.innerHTML = `<strong>Pregunta:</strong> ${pregunta}<br>
-                             <strong>Respuesta:</strong> ${respuestas[index]}`;
+
+        const frente = document.createElement('div');
+        frente.classList.add('cara', 'frente');
+        frente.textContent = pregunta;
+        frente.style.backgroundColor = colores[index % colores.length]; 
+
+        const trasera = document.createElement('div');
+        trasera.classList.add('cara', 'trasera');
+        trasera.textContent = respuestas[index];
+
+        tarjeta.appendChild(frente);
+        tarjeta.appendChild(trasera);
         lista.appendChild(tarjeta);
     });
 }
+
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -31,5 +54,7 @@ formulario.addEventListener('submit', (e) => {
     respuestas.push(respuesta);
     input.value = '';
     input2.value = '';
+    contadorPreguntas.textContent = `0 / ${LIMITE_CARACTERES}`;
+    contadorRespuestas.textContent = `0 / ${LIMITE_CARACTERES}`;
     mostrarTarjetas();
 });
