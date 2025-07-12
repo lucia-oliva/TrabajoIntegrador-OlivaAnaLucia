@@ -112,7 +112,7 @@ input{
     position: relative;
     width: 200px;
     height: 130px;
-    perspective: 1000px; /* Necesario para efecto 3D */
+    perspective: 1000px;
     border-radius: 25px;
 }
 

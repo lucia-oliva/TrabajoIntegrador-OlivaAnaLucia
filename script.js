@@ -22,24 +22,34 @@ input2.addEventListener('input', () => {
 function mostrarTarjetas() {
     lista.innerHTML = ''; 
 
-    preguntas.forEach((pregunta, index) => {
+    preguntas.map((pregunta, index) => {
+        //Crear tarjeta
         const tarjeta = document.createElement('div');
         tarjeta.classList.add('tarjeta');
-
+        //Para eliminar la tarjeta al hacer clic
+        tarjeta.setAttribute('onclick', `eliminarTarjeta(${index})`);
+        // Crear caras de la tarjeta
         const frente = document.createElement('div');
         frente.classList.add('cara', 'frente');
         frente.textContent = pregunta;
         frente.style.backgroundColor = colores[index % colores.length]; 
-
         const trasera = document.createElement('div');
         trasera.classList.add('cara', 'trasera');
         trasera.textContent = respuestas[index];
-
         tarjeta.appendChild(frente);
         tarjeta.appendChild(trasera);
         lista.appendChild(tarjeta);
+        
     });
 }
+
+//Funcion eliminar 
+function eliminarTarjeta(index) {
+    preguntas.splice(index, 1);
+    respuestas.splice(index, 1);
+    mostrarTarjetas();
+}
+
 
 
 formulario.addEventListener('submit', (e) => {
